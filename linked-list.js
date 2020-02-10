@@ -1,118 +1,117 @@
-const Node = require('./linked-list-models'); 
+const Node = require('./linked-list-models') 
 
-function defaultEquals (a, b) { return a === b; }
+function defaultEquals (a, b) { return a === b }
 
 class LinkedList {
-  constructor(equalsFn = defaultEquals) {
-    this.count = 0; // {2}
-    this.head = undefined; // {3}
-    this.equalsFn = equalsFn; // {4}
+  constructor (equalsFn = defaultEquals) {
+    this.count = 0 // {2}
+    this.head = undefined // {3}
+    this.equalsFn = equalsFn // {4}
   }
 
-  push(element) {
-    const node = new Node(element); // {1} 
-    let current; // {2}
-    if (this.head == null) { // {3} 
-      this.head = node;
+  push (element) {
+    const node = new Node(element) // {1} 
+    let current // {2}
+    if (this.head == null) { // {3}
+      this.head = node
     } else {
-      current = this.head; // {4}
+      current = this.head // {4}
       while (current.next != null) { // {5} get last item
-        current = current.next;
+        current = current.next
       }
-      // and assign next to new element to make the link 
-      current.next = node; // {6} 
+      // and assign next to new element to make the link
+      current.next = node // {6} 
     }
-    this.count++; // {7} 
+    this.count++ // {7} 
   }
 
-  getElementAt(index) {
+  getElementAt (index) {
     if (index >= 0 && index <= this.count) { // {1}
-      let node = this.head; // {2}
+      let node = this.head // {2}
       for (let i = 0; i < index && node != null; i++) { // {3}
-        node = node.next;
+        node = node.next
       }
-      return node; // {4}
+      return node // {4}
     }
-    return undefined; // {5}
+    return undefined // {5}
   }
 
-  removeAt(index) {
-    if(index >= 0 && index < this.count) {
-      let current = this.head;
+  removeAt (index) {
+    if (index >= 0 && index < this.count) {
+      let current = this.head
 
       if (index === 0) {
-        this.head = current.next;
+        this.head = current.next
       } else {
-        const previous = this.getElementAt(index - 1);
-        current = previous.next;
-        previous.next = current.next;
+        const previous = this.getElementAt(index - 1)
+        current = previous.next
+        previous.next = current.next
       }
-      this.count --;
-      return current.element;
+      this.count--
+      return current.element
     }
-    return undefined;
+    return undefined
   }
 
-  insert(element, index) {
+  insert (element, index) {
     if (index >= 0 && index <= this.count) { // {1}
-      const node = new Node(element);
+      const node = new Node(element)
       if (index === 0) { // add on first position
-        const current = this.head;
-        node.next = current; // {2}
-        this.head = node;
+        const current = this.head
+        node.next = current // {2}
+        this.head = node
       } else {
-        const previous = this.getElementAt(index - 1); // {3}
-        const current = previous.next; // {4}
-        node.next = current; // {5}
-        previous.next = node; // {6}
+        const previous = this.getElementAt(index - 1) // {3}
+        const current = previous.next // {4}
+        node.next = current // {5}
+        previous.next = node // {6}
       }
-      this.count++; // update size of list
-      return true;
+      this.count++ // update size of list
+      return true
     }
-    return false; // {7}
+    return false // {7}
   }
 
-  indexOf(element) {
-    let current = this.head; // {1}
-    for (let i = 0; i < this.count && current != null; i ++) { // {2}
+  indexOf (element) {
+    let current = this.head // {1}
+    for (let i = 0; i < this.count && current != null; i++) { // {2}
       if (this.equalsFn(element, current.element)) { // {3}
-        return i; // {4}
+        return i // {4}
       }
-      current = current.next; // {5}
+      current = current.next // {5}
     }
     return -1
   }
 
-  remove(element) {
-    const index = this.indexOf(element);
-    return this.removeAt(index);
+  remove (element) {
+    const index = this.indexOf(element)
+    return this.removeAt(index)
   }
 
-  size() {
-    return this.count;
+  size () {
+    return this.count
   }
 
-  isEmpty() {
-    return this.size() === 0;
+  isEmpty () {
+    return this.size() === 0
   }
 
-  getHead() {
-    return this.head;
+  getHead () {
+    return this.head
   }
 
-  toString() {
+  toString () {
     if (this.head == null) { // {1}
-      return '';
+      return ''
     }
-    let objString = `${this.head.element}`; // {2}
-    let current = this.head.next; // {3}
+    let objString = `${this.head.element}` // {2}
+    let current = this.head.next // {3}
     for (let i = 1; i < this.size() && current != null; i++) { // {4}
-      objString = `${objString},${current.element}`;
-      current = current.next;
+      objString = `${objString},${current.element}`
+      current = current.next
     }
-    return objString; // {5}
+    return objString // {5}
   }
+}
 
-} 
-
-module.exports = LinkedList;
+module.exports = LinkedList
