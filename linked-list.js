@@ -1,7 +1,3 @@
-const Node = require('./linked-list-models') 
-
-function defaultEquals (a, b) { return a === b }
-
 class LinkedList {
   constructor (equalsFn = defaultEquals) {
     this.count = 0 // {2}
@@ -10,7 +6,7 @@ class LinkedList {
   }
 
   push (element) {
-    const node = new Node(element) // {1} 
+    const node = new Node(element) // {1}
     let current // {2}
     if (this.head == null) { // {3}
       this.head = node
@@ -20,9 +16,9 @@ class LinkedList {
         current = current.next
       }
       // and assign next to new element to make the link
-      current.next = node // {6} 
+      current.next = node // {6}
     }
-    this.count++ // {7} 
+    this.count++ // {7}
   }
 
   getElementAt (index) {

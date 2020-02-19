@@ -1,10 +1,10 @@
-module.exports = function defaultToString(item) {
+module.exports = function defaultToString (item) {
   if (item === null) {
-    return 'NULL';
+    return 'NULL'
   } else if (item === undefined) {
-    return 'UNDEFINED';
+    return 'UNDEFINED'
   } else if (typeof item === 'string' || item instanceof String) {
-    return `${item}`;
+    return `${item}`
   }
-  return item.toString(); // {1}
+  return item.toString() // {1}
 }

@@ -133,7 +133,6 @@ class HashTableSeparateChaining extends HashTable {
     return false // {7}
   }
 }
-
 class HashTableLinearProbingLazy extends HashTable {
   constructor (toStrFn = defaultToString) {
     super()
